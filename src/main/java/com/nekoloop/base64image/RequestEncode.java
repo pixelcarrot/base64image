@@ -11,39 +11,15 @@ public class RequestEncode {
     private static final String TAG = RequestEncode.class.getSimpleName();
 
     private final Base64Image manager;
-    private final String path;
-    private final Provider provider;
+    private final Bitmap bitmap;
 
-    RequestEncode(Base64Image manager, String path, Provider provider) {
+    RequestEncode(Base64Image manager, Bitmap bitmap) {
         this.manager = manager;
-        this.path = path;
-        this.provider = provider;
+        this.bitmap = bitmap;
     }
 
-    public void into(final Target callback) {
-
-        provider.setListener(path, new ValueListener() {
-            @Override
-            public void onBitmapLoaded(Bitmap bitmap) {
-
-                asyncEncode(bitmap, new Encode() {
-                    @Override
-                    public void onSuccess(String base64) {
-                        callback.onSuccess(base64);
-                    }
-
-                    @Override
-                    public void onFail() {
-                        callback.onFail();
-                    }
-                });
-            }
-
-            @Override
-            public void onBitmapFailed() {
-                callback.onFail();
-            }
-        });
+    public void into(final Encode callback) {
+        asyncEncode(bitmap, callback);
     }
 
     private void asyncEncode(Bitmap bitmap, final Encode callback) {
@@ -61,33 +37,16 @@ public class RequestEncode {
 
             @Override
             public void handleEncodeState(int state) {
-                Log.d(TAG, "" + state);
                 if (state == BitmapEncode.STATE_FAILED) {
-                    callback.onFail();
+                    callback.onFailure();
                 }
             }
         }));
     }
 
-    public interface Target {
+    public interface Encode {
         void onSuccess(String base64);
 
-        void onFail();
-    }
-
-    private interface Encode {
-        void onSuccess(String base64);
-
-        void onFail();
-    }
-
-    public interface Provider {
-        void setListener(String path, ValueListener listener);
-    }
-
-    public interface ValueListener {
-        void onBitmapLoaded(Bitmap bitmap);
-
-        void onBitmapFailed();
+        void onFailure();
     }
 }
