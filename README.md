@@ -30,7 +30,7 @@ repositories {
 
 ```groovy
 dependencies {
-    implementation 'com.github.JustinNguyenME:base64image:0.1.0'
+    implementation 'com.github.JustinNguyenME:base64image:1.0.0'
 }
 ```
 
