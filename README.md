@@ -1,5 +1,7 @@
 # Base64Image
 
+[![](https://jitpack.io/v/JustinNguyenME/base64image.svg)](https://jitpack.io/#JustinNguyenME/base64image)
+
 ## Example
 
 ### Bitmap to Base64 String
