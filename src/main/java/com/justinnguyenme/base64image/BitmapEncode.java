@@ -1,4 +1,4 @@
-package com.nekoloop.base64image;
+package com.justinnguyenme.base64image;
 
 import android.graphics.Bitmap;
 import android.util.Base64;

@@ -1,4 +1,4 @@
-package com.nekoloop.base64image;
+package com.justinnguyenme.base64image;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -27,9 +27,8 @@ public class Base64Image {
     };
 
     private static volatile Base64Image singleton = null;
-
-    final Context context;
     final ExecutorService service;
+    private final Context context;
 
     private Base64Image(Context context, ExecutorService service) {
         this.context = context;
