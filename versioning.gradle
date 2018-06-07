@@ -1,0 +1,21 @@
+ext {
+    buildVersionCode = {
+        def (major, minor, patch) = version.toLowerCase().replaceAll('-', '').tokenize('.')
+        if (patch.endsWith("snapshot")) {
+            patch = patch.replaceAll("[^0-9]", "")
+        } else {
+            def rc
+            (patch, rc) = patch.tokenize("rc")
+        }
+
+        def ciBuild = "$System.env.BUILD_NUMBER"
+
+        if (ciBuild && ciBuild != "null") {
+            patch = ciBuild
+        }
+
+        (major, minor, patch) = [major, minor, patch].collect { it.toInteger() }
+
+        (major * 1000000) + (minor * 1000) + patch;
+    }
+}
