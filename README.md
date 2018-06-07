@@ -2,56 +2,41 @@
 
 ## Example
 
-```java
-Base64Image.with(this)
-        .encode(bitmap)
-        .into(new RequestEncode.Encode() {
-            @Override
-            public void onSuccess(String base64) {
-            
-            }
-            
-            @Override
-            public void onFailure() {
-
-            }
-        });
+### Bitmap to Base64 String
+```kotlin
+Base64Image.instance.encode(bitmap) { base64 ->
+    base64?.let {
+        // success
+    }
+}
 ```
 
-
-```java
-Base64Image.with(this)
-        .decode("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABHNCSVQICAgIfAhkiAAAAA1JREFU CB1jYGD4/x8AAwIB/6fhVKUAAAAASUVORK5CYII=")
-        .into(new RequestDecode.Decode() {
-            @Override
-            public void onSuccess(Bitmap bitmap) {
-            
-            }
-            
-            @Override
-            public void onFailure() {
-            
-            }
-        });
+### Base64 String to Bitmap
+```kotlin
+Base64Image.instance.decode(base64, { bitmap ->
+    bitmap?.let {
+        // success
+    }
+})
 ```
 
 ## Installation
 
-```javascript
+```groovy
 repositories {
     maven { url "https://jitpack.io" }
 }
 ```
 
-```javascript
+```groovy
 dependencies {
-    compile 'com.github.nekoloop:Base64Image:0.1.0'
+    implementation 'com.github.JustinNguyenME:base64image:0.1.0'
 }
 ```
 
 ## Author
 
-Nguyen Hoang Anh Nguyen, nguyen.cocoa@gmail.com
+Justin Nguyen, nguyen.cocoa@gmail.com
 
 ## License
 
