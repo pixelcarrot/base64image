@@ -1,12 +1,12 @@
 # Base64Image
 
-[![](https://jitpack.io/v/JustinNguyenME/base64image.svg)](https://jitpack.io/#JustinNguyenME/base64image)
+[![](https://jitpack.io/v/pixelcarrot/base64image.svg)](https://jitpack.io/#pixelcarrot/base64image)
 
 ## Example
 
 ### Bitmap to Base64 String
 ```kotlin
-Base64Image.instance.encode(bitmap) { base64 ->
+Base64Image.encode(bitmap) { base64 ->
     base64?.let {
         // success
     }
@@ -15,7 +15,7 @@ Base64Image.instance.encode(bitmap) { base64 ->
 
 ### Base64 String to Bitmap
 ```kotlin
-Base64Image.instance.decode(base64, { bitmap ->
+Base64Image.decode(base64, { bitmap ->
     bitmap?.let {
         // success
     }
@@ -32,7 +32,7 @@ repositories {
 
 ```groovy
 dependencies {
-    implementation 'com.github.JustinNguyenME:base64image:1.0.0'
+    implementation 'com.github.pixelcarrot:base64image:1.0.1'
 }
 ```
 

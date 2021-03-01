@@ -1,14 +1,15 @@
-package com.justinnguyenme.base64image
+package com.pixelcarrot.base64image
 
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Handler
 import android.os.Looper
 import android.util.Base64
-import java.io.ByteArrayOutputStream
-import java.io.IOException
 
-
-internal class Encoder(private val bitmap: Bitmap, private val listener: Listener<String?>) : Runnable {
+internal class Decoder(
+    private val base64: String,
+    private val listener: Listener<Bitmap?>
+) : Runnable {
 
     companion object {
         private const val NUMBER_OF_TRIES = 3
@@ -16,11 +17,8 @@ internal class Encoder(private val bitmap: Bitmap, private val listener: Listene
     }
 
     override fun run() {
-
-        var base64: String? = null
-        val stream = ByteArrayOutputStream()
-        bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream)
-        val bytes = stream.toByteArray()
+        var bitmap: Bitmap? = null
+        val imageBuffer = Base64.decode(base64.toByteArray(), Base64.DEFAULT)
 
         try {
             listener.onStart()
@@ -38,7 +36,11 @@ internal class Encoder(private val bitmap: Bitmap, private val listener: Listene
                     return
                 }
                 try {
-                    base64 = Base64.encodeToString(bytes, Base64.DEFAULT)
+                    bitmap = BitmapFactory.decodeByteArray(
+                        imageBuffer,
+                        0,
+                        imageBuffer.size
+                    )
                     break
                 } catch (e: Throwable) {
                     System.gc()
@@ -54,13 +56,8 @@ internal class Encoder(private val bitmap: Bitmap, private val listener: Listene
                 }
             }
         } finally {
-            try {
-                stream.close()
-            } catch (e: IOException) {
-                e.printStackTrace()
-            }
             Handler(Looper.getMainLooper()).post {
-                listener.onCompleted(base64)
+                listener.onCompleted(bitmap)
             }
             Thread.interrupted()
         }
