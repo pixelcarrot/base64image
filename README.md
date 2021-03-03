@@ -1,7 +1,5 @@
 # Base64Image
 
-[![](https://jitpack.io/v/pixelcarrot/base64image.svg)](https://jitpack.io/#pixelcarrot/base64image)
-
 ## Example
 
 ### Bitmap to Base64 String
@@ -25,14 +23,8 @@ Base64Image.decode(base64, { bitmap ->
 ## Installation
 
 ```groovy
-repositories {
-    maven { url "https://jitpack.io" }
-}
-```
-
-```groovy
 dependencies {
-    implementation 'com.github.pixelcarrot:base64image:1.0.1'
+    implementation 'com.pixelcarrot.base64image:base64image:1.0.1'
 }
 ```
 
