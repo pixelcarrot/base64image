@@ -1,6 +1,6 @@
 ext {
     buildVersionCode = {
-        def (major, minor, patch) = version.toLowerCase().replaceAll('-', '').tokenize('.')
+        def (major, minor, patch) = VERSION_NAME.toLowerCase().replaceAll('-', '').tokenize('.')
         if (patch.endsWith("snapshot")) {
             patch = patch.replaceAll("[^0-9]", "")
         } else {
