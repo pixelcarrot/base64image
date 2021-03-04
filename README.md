@@ -24,7 +24,7 @@ Base64Image.decode(base64, { bitmap ->
 
 ```groovy
 dependencies {
-    implementation 'com.pixelcarrot.base64image:base64image:1.0.1'
+    implementation 'com.pixelcarrot.base64image:base64image:1.0.0'
 }
 ```
 
