@@ -1,12 +1,9 @@
-name: Release 1.x
+name: Release
 
 on:
   push:
-    branches:
-      - release/1.x
-  pull_request:
-    branches:
-      - release/1.x
+    tags:
+      - '*'
 
 jobs:
   build:
